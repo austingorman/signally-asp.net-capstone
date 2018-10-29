@@ -6,24 +6,18 @@ using System.Threading.Tasks;
 
 namespace Signally.Models
 {
-    public class Customer
+    public class CSR
     {
         [Required]
-        public int CustomerId { get; set; }
-        public string Company { get; set; }
+        public int CSRId { get; set; }
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
-        public string Email { get; set; }
-        [Required]
-        public string Address { get; set; }
-        [Required]
-        public int Phone { get; set; }
-        [Required]
-        [Display(Name = "Customer Name")]
+        [Display(Name = "CSR Name")]
         public string FullName
         {
             get
@@ -31,6 +25,6 @@ namespace Signally.Models
                 return $"{FirstName} {LastName}";
             }
         }
-        public virtual ICollection<Order> Order { get; set; }
+
     }
 }
