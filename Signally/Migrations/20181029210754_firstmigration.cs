@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Signally.Data.Migrations
+namespace Signally.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class firstmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,65 @@ namespace Signally.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CSR",
+                columns: table => new
+                {
+                    CSRId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CSR", x => x.CSRId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customer",
+                columns: table => new
+                {
+                    CustomerId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Company = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
+                    Phone = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customer", x => x.CustomerId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Status",
+                columns: table => new
+                {
+                    StatusId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    StatusName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Status", x => x.StatusId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Type",
+                columns: table => new
+                {
+                    TypeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TypeName = table.Column<string>(nullable: false),
+                    PricePerUnit = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Type", x => x.TypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +212,110 @@ namespace Signally.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CSRId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false),
+                    DatePlaced = table.Column<DateTime>(nullable: false, defaultValueSql: "GETDATE()"),
+                    DateDue = table.Column<DateTime>(nullable: false, defaultValueSql: "GETDATE()"),
+                    StatusId = table.Column<int>(nullable: false),
+                    Rush = table.Column<bool>(nullable: false),
+                    Install = table.Column<bool>(nullable: false),
+                    Price = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.OrderId);
+                    table.ForeignKey(
+                        name: "FK_Order_CSR_CSRId",
+                        column: x => x.CSRId,
+                        principalTable: "CSR",
+                        principalColumn: "CSRId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Order_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customer",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Order_Status_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Status",
+                        principalColumn: "StatusId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderItem",
+                columns: table => new
+                {
+                    OrderItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    OrderId = table.Column<int>(nullable: false),
+                    TypeId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    Height = table.Column<int>(nullable: false),
+                    Width = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItem", x => x.OrderItemId);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_Order_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Order",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_Type_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "Type",
+                        principalColumn: "TypeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "c03ec030-ae06-4ce0-806b-5cd5860928b1", 0, "39ea71b6-1cde-4844-a873-7cd8f46cb5d5", null, false, false, null, null, null, "AQAAAAEAACcQAAAAEEVOzBVjATIFAw7489R9jWU0oEDiIjPA5rnUqrj9Lmo+grPeC9Svmwk8hcCdOJqI/A==", null, false, "2d20b6b5-c895-4c94-814b-3f3dfe1bbcef", false, "FS110" });
+
+            migrationBuilder.InsertData(
+                table: "CSR",
+                columns: new[] { "CSRId", "FirstName", "LastName" },
+                values: new object[,]
+                {
+                    { 1, "Walt", "Bergey" },
+                    { 2, "Hailey", "Welker" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Status",
+                columns: new[] { "StatusId", "StatusName" },
+                values: new object[,]
+                {
+                    { 1, "Estimate" },
+                    { 2, "Order" },
+                    { 3, "Built" },
+                    { 4, "Picked-Up" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Type",
+                columns: new[] { "TypeId", "PricePerUnit", "TypeName" },
+                values: new object[,]
+                {
+                    { 1, 2.0, "Vinyl Letters" },
+                    { 2, 10.0, "Coroplast" },
+                    { 3, 15.0, "Aluminum" },
+                    { 4, 7.0, "Banner" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +354,31 @@ namespace Signally.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_CSRId",
+                table: "Order",
+                column: "CSRId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_CustomerId",
+                table: "Order",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_StatusId",
+                table: "Order",
+                column: "StatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_OrderId",
+                table: "OrderItem",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_TypeId",
+                table: "OrderItem",
+                column: "TypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +399,28 @@ namespace Signally.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "OrderItem");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Type");
+
+            migrationBuilder.DropTable(
+                name: "CSR");
+
+            migrationBuilder.DropTable(
+                name: "Customer");
+
+            migrationBuilder.DropTable(
+                name: "Status");
         }
     }
 }
