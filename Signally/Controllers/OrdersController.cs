@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -50,18 +51,20 @@ namespace Signally.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName");
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "FullName");
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName");
-            return View();
+            //ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName");
+            //ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "FullName");
+            //ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName");
+            var ViewModel = new CreateOrderViewModel(_context);
+            return View(ViewModel);
         }
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+
+        //POST: Orders/Create
+        //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install,Price")] Order order)
+        public async Task<IActionResult> Create([Bind("CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install,Price")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -69,10 +72,13 @@ namespace Signally.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
-            return View(order);
+
+            var ViewModel = new CreateOrderViewModel(_context);
+            return View(ViewModel);
+            //ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
+            //ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
+            //ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
+            //return View(order);
         }
 
         // GET: Orders/Edit/5

@@ -1,4 +1,4 @@
-﻿@model Signally.Models.Order
+﻿@model Signally.Models.CreateOrderViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,35 +13,35 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CSRId" class="control-label"></label>
-                <select asp-for="CSRId" class ="form-control" asp-items="ViewBag.CSRId"></select>
+                <label asp-for="CSR" class="control-label"></label>
+                <select asp-for="@Model.order.CSRId" class ="form-control" asp-items="@Model.CSR"></select>
             </div>
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+                <label asp-for="Customer" class="control-label"></label>
+                <select asp-for="@Model.order.CustomerId" class ="form-control" asp-items="@Model.Customer"></select>
             </div>
             <div class="form-group">
-                <label asp-for="StatusId" class="control-label"></label>
-                <select asp-for="StatusId" class ="form-control" asp-items="ViewBag.StatusId"></select>
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="@Model.order.StatusId" class ="form-control" asp-items="@Model.Status"></select>
             </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Rush" /> @Html.DisplayNameFor(model => model.Rush)
+                        <input asp-for="@Model.order.Rush" /> @Html.DisplayNameFor(model => model.order.Rush)
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Install" /> @Html.DisplayNameFor(model => model.Install)
+                        <input asp-for="@Model.order.Install" /> @Html.DisplayNameFor(model => model.order.Install)
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <label asp-for="@Model.order.Price" class="control-label"></label>
+                <input asp-for="@Model.order.Price" class="form-control" />
+                <span asp-validation-for="@Model.order.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

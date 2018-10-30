@@ -7,20 +7,78 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model)
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CSR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatePlaced)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rush)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Install)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <a asp-controller="Orders" asp-action="Details" asp-route-id="@item.OrderId">@item</a>
-
-                </td>
-            </tr>
-        }
+        @foreach (var order in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => order.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.Customer.FirstName)
+                @Html.DisplayFor(modelItem => order.Customer.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.Customer.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.CSR.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.DatePlaced)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.DateDue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.Status.StatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.Rush)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.Install)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.Price)
+            </td>
+            <td>
+                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.OrderId">Details</a> |
+                <a asp-controller="Orders" asp-action="Edit" asp-route-id="@order.OrderId">Edit</a> |
+                <a asp-controller="Orders" asp-action="Delete" asp-route-id="@order.OrderId">Delete</a>
+            </td>
+        </tr>
+            }
     </tbody>
 </table>

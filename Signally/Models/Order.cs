@@ -13,12 +13,10 @@ namespace Signally.Models
         [Required]
         [Display(Name = "CSR")]
         public int CSRId { get; set; }
-        [Required]
         public CSR CSR { get; set; }
         [Required]
         [Display(Name = "Customer")]
         public int CustomerId  { get; set; }
-        [Required]
         public Customer Customer { get; set; }
         [Required]
         [Display(Name = "DatePlaced")]
@@ -29,7 +27,6 @@ namespace Signally.Models
         [Required]
         [Display(Name = "Status")]
         public int StatusId { get; set; }
-        [Required]
         public Status Status { get; set; }
         [Required]
         public bool Rush { get; set; }
