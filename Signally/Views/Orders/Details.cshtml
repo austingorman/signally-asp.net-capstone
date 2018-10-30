@@ -1,0 +1,66 @@
+﻿@model Signally.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CSR)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CSR.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatePlaced)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatePlaced)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateDue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status.StatusName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rush)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rush)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Install)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Install)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OrderId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

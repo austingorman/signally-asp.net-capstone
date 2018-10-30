@@ -11,18 +11,23 @@ namespace Signally.Models
         [Required]
         public int OrderId  { get; set; }
         [Required]
+        [Display(Name = "CSR")]
         public int CSRId { get; set; }
         [Required]
         public CSR CSR { get; set; }
         [Required]
+        [Display(Name = "Customer")]
         public int CustomerId  { get; set; }
         [Required]
         public Customer Customer { get; set; }
         [Required]
+        [Display(Name = "DatePlaced")]
         public DateTime DatePlaced { get; set; }
         [Required]
+        [Display(Name = "Date Due")]
         public DateTime DateDue { get; set; }
         [Required]
+        [Display(Name = "Status")]
         public int StatusId { get; set; }
         [Required]
         public Status Status { get; set; }
