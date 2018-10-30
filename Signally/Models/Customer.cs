@@ -21,7 +21,7 @@ namespace Signally.Models
         [Required]
         public string Address { get; set; }
         [Required]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         [Required]
         [Display(Name = "Customer Name")]
         public string FullName

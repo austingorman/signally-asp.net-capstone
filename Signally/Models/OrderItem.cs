@@ -12,9 +12,9 @@ namespace Signally.Models
         public int OrderItemId { get; set; }
         [Required]
         public int OrderId { get; set; }
-        [Required]
         public Order Order { get; set; }
         [Required]
+        [Display(Name = "Type")]
         public int TypeId { get; set; }
         [Required]
         public Type Type { get; set; }
@@ -23,7 +23,7 @@ namespace Signally.Models
         [Required]
         public int Height { get; set; }
         [Required]
-        public int Width { get; set; }
+        public int? Width { get; set; }
         [Required]
         public double Price { get; set; }
     }

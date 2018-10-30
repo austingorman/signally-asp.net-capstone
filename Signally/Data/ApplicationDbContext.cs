@@ -45,7 +45,7 @@ namespace Signally.Data
 
             IdentityUser user = new IdentityUser
             {
-                UserName = "FS110",
+                Email = "110@signs.com",
                 LockoutEnabled = false,
                 SecurityStamp = Guid.NewGuid().ToString("D")
             };
@@ -115,6 +115,32 @@ namespace Signally.Data
                    TypeId = 4,
                    TypeName = "Banner",
                    PricePerUnit = 7.00
+               }
+           );
+            modelBuilder.Entity<Order>().HasData(
+               new Order()
+               {
+                   OrderId = 1,
+                   CSRId = 1,
+                   CustomerId = 2,
+                   DatePlaced = DateTime.Parse("10/17/2018 13:56:25"),
+                   DateDue = DateTime.Parse("10/31/2018 10:56:20"),
+                   StatusId = 1,
+                   Rush = true,
+                   Install = false,
+                   Price = 100.00
+               }
+           );
+            modelBuilder.Entity<OrderItem>().HasData(
+               new OrderItem()
+               {
+                   OrderItemId = 1,
+                   OrderId = 1,
+                   TypeId = 3,
+                   Quantity = 1,
+                   Height = 18,
+                   Width = 12,
+                   Price = 22.50 
                }
            );
         }
