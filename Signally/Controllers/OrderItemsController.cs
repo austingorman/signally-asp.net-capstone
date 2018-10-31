@@ -49,9 +49,12 @@ namespace Signally.Controllers
         // GET: OrderItems/Create
         public IActionResult Create()
         {
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId");
-            ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName");
-            return View();
+            //ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId");
+            //ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName");
+            //return View();
+
+            var ViewModel = new CreateOrderItemViewModel(_context);
+            return View(ViewModel);
         }
 
         // POST: OrderItems/Create
@@ -67,9 +70,11 @@ namespace Signally.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId", orderItem.OrderId);
-            ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName", orderItem.TypeId);
-            return View(orderItem);
+            var ViewModel = new CreateOrderItemViewModel(_context);
+            return View(ViewModel);
+            //ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId", orderItem.OrderId);
+            //ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName", orderItem.TypeId);
+            //return View(orderItem);
         }
 
         // GET: OrderItems/Edit/5

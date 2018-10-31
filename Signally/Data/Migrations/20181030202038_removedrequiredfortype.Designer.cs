@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Signally.Data;
 
 namespace Signally.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181030202038_removedrequiredfortype")]
+    partial class removedrequiredfortype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,7 +116,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "bb706ef7-a0ba-49a0-9b89-55155f4f20c0", AccessFailedCount = 0, ConcurrencyStamp = "ec0b0a91-2060-479a-8482-9f5c1efc84aa", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAELQA2fmx+JJQKYpbU8Gusb+elvOe9p5DuvMUyFLdysaFq0KncEGDuGsd+X4WPI5Elw==", PhoneNumberConfirmed = false, SecurityStamp = "dd64285f-47db-419b-af16-6c9e5257375c", TwoFactorEnabled = false }
+                        new { Id = "90c2362c-9b05-436b-a204-7aa68fa68350", AccessFailedCount = 0, ConcurrencyStamp = "3b49bca5-5c60-48be-9720-9ae2656e1231", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEFnMnqzyDDGGida8GBR5PAr6ohWHdldgSLualqvzUGkwH2jptTqB/LcdywsJQ4DytA==", PhoneNumberConfirmed = false, SecurityStamp = "516179f5-6b10-4fa7-9aca-f8de1a27972c", TwoFactorEnabled = false }
                     );
                 });
 

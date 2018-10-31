@@ -94,10 +94,10 @@ namespace Signally.Controllers
             {
                 return NotFound();
             }
-            ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
-            return View(order);
+
+            EditOrderViewModel editOrderViewModel = new EditOrderViewModel(_context);
+            editOrderViewModel.Order = order;
+            return View(editOrderViewModel);
         }
 
         // POST: Orders/Edit/5
@@ -106,36 +106,35 @@ namespace Signally.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("OrderId,CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install,Price")] Order order)
-        {
-            if (id != order.OrderId)
             {
-                return NotFound();
-            }
+                if (id != order.OrderId)
+                {
+                    return NotFound();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrderExists(order.OrderId))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(order);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!OrderExists(order.OrderId))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
-            return View(order);
+            EditOrderViewModel editOrderViewModel = new EditOrderViewModel(_context);
+            editOrderViewModel.Order = order;
+            return View(editOrderViewModel);
         }
 
         // GET: Orders/Delete/5
