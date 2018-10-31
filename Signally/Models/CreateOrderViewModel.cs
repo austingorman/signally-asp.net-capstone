@@ -9,7 +9,7 @@ namespace Signally.Models
 {
     public class CreateOrderViewModel
     {
-        public Order order { get; set; }
+        public Order Order { get; set; }
 
         public List<SelectListItem> CSR { get; set; }
         public List<SelectListItem> Customer { get; set; }

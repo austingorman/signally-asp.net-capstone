@@ -10,8 +10,8 @@ using Signally.Data;
 namespace Signally.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181029223956_thirdmigration")]
-    partial class thirdmigration
+    [Migration("20181031144723_newmigration")]
+    partial class newmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,7 +116,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "3d6ba3ae-9255-4dce-bf54-cbf144acde59", AccessFailedCount = 0, ConcurrencyStamp = "95824d0f-dad0-413e-b0da-35a579abebda", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAELwJDS9O4j5rmE8Zt9So98ArpnhnSlSmi4JFLUS+DSa6vsR+/oxZxV8yRNIZk5YjdQ==", PhoneNumberConfirmed = false, SecurityStamp = "bb4d7575-495c-4b25-a9a7-a4d94a814448", TwoFactorEnabled = false }
+                        new { Id = "e075250e-d828-493e-b1ab-d9b78091cec3", AccessFailedCount = 0, ConcurrencyStamp = "b6abb6e8-c008-4efb-8322-5e1854f15889", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEMtPo9sZme7l7VeBfGZ1yTuh8Ups6mRPsof+0t2GKnHGq4eh5tUGHCAM4oBZa25pmQ==", PhoneNumberConfirmed = false, SecurityStamp = "dedd2e63-2d6b-4157-b1f4-1ca12467fd07", TwoFactorEnabled = false }
                     );
                 });
 
@@ -231,7 +231,8 @@ namespace Signally.Migrations
                     b.Property<string>("LastName")
                         .IsRequired();
 
-                    b.Property<int>("Phone");
+                    b.Property<string>("Phone")
+                        .IsRequired();
 
                     b.HasKey("CustomerId");
 
@@ -291,7 +292,8 @@ namespace Signally.Migrations
 
                     b.Property<int>("TypeId");
 
-                    b.Property<int>("Width");
+                    b.Property<int?>("Width")
+                        .IsRequired();
 
                     b.HasKey("OrderItemId");
 
@@ -414,7 +416,7 @@ namespace Signally.Migrations
                     b.HasOne("Signally.Models.Order", "Order")
                         .WithMany("OrderItem")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Signally.Models.Type", "Type")
                         .WithMany()

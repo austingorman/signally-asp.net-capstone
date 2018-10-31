@@ -73,8 +73,9 @@ namespace Signally.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var ViewModel = new CreateOrderViewModel(_context);
-            return View(ViewModel);
+            CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel(_context);
+            createOrderViewModel.Order = order;
+            return View(createOrderViewModel);
             //ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
             //ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
             //ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
