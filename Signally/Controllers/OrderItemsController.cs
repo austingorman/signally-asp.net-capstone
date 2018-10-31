@@ -20,38 +20,45 @@ namespace Signally.Controllers
         }
 
         // GET: OrderItems
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? TheOrderId)
         {
-            var applicationDbContext = _context.OrderItem.Include(o => o.Order).Include(o => o.Type);
+            if (TheOrderId == null)
+            {
+                var applicationDbContext2 = _context.OrderItem.Include(o => o.Order).Include(o => o.Type);
+                return View(await applicationDbContext2.ToListAsync());
+            }
+            var applicationDbContext = _context.OrderItem.Include(o => o.Order).Include(o => o.Type).Where(o => (o.OrderId == TheOrderId));
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: OrderItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var orderItem = await _context.OrderItem
-                .Include(o => o.Order)
-                .Include(o => o.Type)
-                .FirstOrDefaultAsync(m => m.OrderItemId == id);
-            if (orderItem == null)
-            {
-                return NotFound();
-            }
-
-            return View(orderItem);
+            //var orderItem = await _context.OrderItem
+            //    .Include(o => o.Order)
+            //    .Include(o => o.Type)
+            //    .FirstOrDefaultAsync(m => m.OrderItemId == id);
+            //if (orderItem == null)
+            //{
+            //    return NotFound();
+            //}
+            return RedirectToAction(nameof(Index), new { TheOrderId = id });
         }
 
         // GET: OrderItems/Create
         public IActionResult Create()
         {
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId");
-            ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName");
-            return View();
+            //ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId");
+            //ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName");
+            //return View();
+
+            var ViewModel = new CreateOrderItemViewModel(_context);
+            return View(ViewModel);
         }
 
         // POST: OrderItems/Create
@@ -61,15 +68,24 @@ namespace Signally.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("OrderItemId,OrderId,TypeId,Quantity,Height,Width,Price")] OrderItem orderItem)
         {
+            int OrderId;
+            var StringId = RouteData.Values["id"].ToString();
+            var TheId = int.TryParse(StringId, out OrderId);
+            orderItem.OrderId = OrderId;
+            ModelState.Remove("orderItem.OrderId");
+
             if (ModelState.IsValid)
             {
                 _context.Add(orderItem);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new {TheOrderId = orderItem.OrderId});
             }
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId", orderItem.OrderId);
-            ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName", orderItem.TypeId);
-            return View(orderItem);
+            CreateOrderItemViewModel createOrderItemViewModel = new CreateOrderItemViewModel(_context);
+            createOrderItemViewModel.OrderItem = orderItem;
+            return View(createOrderItemViewModel);
+            //ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId", orderItem.OrderId);
+            //ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName", orderItem.TypeId);
+            //return View(orderItem);
         }
 
         // GET: OrderItems/Edit/5
@@ -85,9 +101,9 @@ namespace Signally.Controllers
             {
                 return NotFound();
             }
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId", orderItem.OrderId);
-            ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName", orderItem.TypeId);
-            return View(orderItem);
+            EditOrderItemViewModel editOrderItemViewModel = new EditOrderItemViewModel(_context);
+            editOrderItemViewModel.OrderItem = orderItem;
+            return View(editOrderItemViewModel);
         }
 
         // POST: OrderItems/Edit/5
@@ -118,13 +134,13 @@ namespace Signally.Controllers
                     else
                     {
                         throw;
-                    }
+                    } 
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { TheOrderId = orderItem.OrderId });
             }
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId", orderItem.OrderId);
-            ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName", orderItem.TypeId);
-            return View(orderItem);
+            EditOrderItemViewModel editOrderItemViewModel = new EditOrderItemViewModel(_context);
+            editOrderItemViewModel.OrderItem = orderItem;
+            return View(editOrderItemViewModel);
         }
 
         // GET: OrderItems/Delete/5
@@ -155,7 +171,7 @@ namespace Signally.Controllers
             var orderItem = await _context.OrderItem.FindAsync(id);
             _context.OrderItem.Remove(orderItem);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { TheOrderId = orderItem.OrderId });
         }
 
         private bool OrderItemExists(int id)

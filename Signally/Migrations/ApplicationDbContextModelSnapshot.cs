@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Signally.Data;
 
 namespace Signally.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181029235948_removednullablebools")]
-    partial class removednullablebools
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,7 +114,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7d4e922a-e906-412a-a31b-5ecbec66f221", AccessFailedCount = 0, ConcurrencyStamp = "d2790239-ded3-43a3-85c3-333a6c95961b", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEF4A0hzw0qvW/Ke4bRJnX9c+RruTwW10LluGa2Cjo64S8h0csEoSF06HGYcy+1pL9w==", PhoneNumberConfirmed = false, SecurityStamp = "8af28d20-28e2-41ae-bdb7-dfee2ab4847e", TwoFactorEnabled = false }
+                        new { Id = "e075250e-d828-493e-b1ab-d9b78091cec3", AccessFailedCount = 0, ConcurrencyStamp = "b6abb6e8-c008-4efb-8322-5e1854f15889", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEMtPo9sZme7l7VeBfGZ1yTuh8Ups6mRPsof+0t2GKnHGq4eh5tUGHCAM4oBZa25pmQ==", PhoneNumberConfirmed = false, SecurityStamp = "dedd2e63-2d6b-4157-b1f4-1ca12467fd07", TwoFactorEnabled = false }
                     );
                 });
 
@@ -416,7 +414,7 @@ namespace Signally.Migrations
                     b.HasOne("Signally.Models.Order", "Order")
                         .WithMany("OrderItem")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Signally.Models.Type", "Type")
                         .WithMany()

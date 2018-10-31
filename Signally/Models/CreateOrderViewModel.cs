@@ -9,7 +9,7 @@ namespace Signally.Models
 {
     public class CreateOrderViewModel
     {
-        public Order order { get; set; }
+        public Order Order { get; set; }
 
         public List<SelectListItem> CSR { get; set; }
         public List<SelectListItem> Customer { get; set; }
@@ -20,10 +20,6 @@ namespace Signally.Models
             CSR = context.CSR.Select(CSR => new SelectListItem { Text = CSR.FirstName, Value = CSR.CSRId.ToString() }).ToList();
             Customer = context.Customer.Select(Customer => new SelectListItem { Text = Customer.FullName, Value = Customer.CustomerId.ToString() }).ToList();
             Status = context.Status.Select(Status => new SelectListItem { Text = Status.StatusName, Value = Status.StatusId.ToString() }).ToList();
-
-            //CSR = context.CSR.ToList();
-            //Customer = context.Customer.ToList();
-            //Status = context.Status.ToList();
         }
     }
 }

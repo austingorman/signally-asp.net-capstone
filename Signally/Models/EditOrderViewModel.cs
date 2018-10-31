@@ -7,7 +7,7 @@ using Signally.Data;
 
 namespace Signally.Models
 {
-    public class ProductionViewModel
+    public class EditOrderViewModel
     {
         public Order Order { get; set; }
 
@@ -15,7 +15,7 @@ namespace Signally.Models
         public List<SelectListItem> Customer { get; set; }
         public List<SelectListItem> Status { get; set; }
 
-        public ProductionViewModel(ApplicationDbContext context)
+        public EditOrderViewModel(ApplicationDbContext context)
         {
             CSR = context.CSR.Select(CSR => new SelectListItem { Text = CSR.FirstName, Value = CSR.CSRId.ToString() }).ToList();
             Customer = context.Customer.Select(Customer => new SelectListItem { Text = Customer.FullName, Value = Customer.CustomerId.ToString() }).ToList();

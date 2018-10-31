@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Signally.Migrations
 {
-    public partial class firstmigration : Migration
+    public partial class newmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -72,7 +72,7 @@ namespace Signally.Migrations
                     LastName = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: false),
-                    Phone = table.Column<int>(nullable: false)
+                    Phone = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -271,7 +271,7 @@ namespace Signally.Migrations
                         column: x => x.OrderId,
                         principalTable: "Order",
                         principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderItem_Type_TypeId",
                         column: x => x.TypeId,
@@ -283,7 +283,7 @@ namespace Signally.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "c03ec030-ae06-4ce0-806b-5cd5860928b1", 0, "39ea71b6-1cde-4844-a873-7cd8f46cb5d5", null, false, false, null, null, null, "AQAAAAEAACcQAAAAEEVOzBVjATIFAw7489R9jWU0oEDiIjPA5rnUqrj9Lmo+grPeC9Svmwk8hcCdOJqI/A==", null, false, "2d20b6b5-c895-4c94-814b-3f3dfe1bbcef", false, "FS110" });
+                values: new object[] { "e075250e-d828-493e-b1ab-d9b78091cec3", 0, "b6abb6e8-c008-4efb-8322-5e1854f15889", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEMtPo9sZme7l7VeBfGZ1yTuh8Ups6mRPsof+0t2GKnHGq4eh5tUGHCAM4oBZa25pmQ==", null, false, "dedd2e63-2d6b-4157-b1f4-1ca12467fd07", false, null });
 
             migrationBuilder.InsertData(
                 table: "CSR",

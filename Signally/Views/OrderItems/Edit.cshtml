@@ -1,47 +1,45 @@
-﻿@model Signally.Models.OrderItem
+﻿@model Signally.Models.EditOrderItemViewModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Line Item</h2>
 
-<h4>OrderItem</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="OrderItemId" />
+            <input type="hidden" asp-for="@Model.OrderItem.OrderItemId" />
             <div class="form-group">
-                <label asp-for="OrderId" class="control-label"></label>
-                <select asp-for="OrderId" class="form-control" asp-items="ViewBag.OrderId"></select>
-                <span asp-validation-for="OrderId" class="text-danger"></span>
+                <input type="hidden" asp-for="@Model.OrderItem.OrderId" class="form-control" asp-items="Model.OrderItem.OrderId">
+                <span asp-validation-for="@Model.OrderItem.OrderId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TypeId" class="control-label"></label>
-                <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId"></select>
-                <span asp-validation-for="TypeId" class="text-danger"></span>
+                <label asp-for="@Model.OrderItem.TypeId" class="control-label"></label>
+                <select asp-for="@Model.OrderItem.TypeId" class="form-control" asp-items="@Model.Type"></select>
+                <span asp-validation-for="@Model.OrderItem.TypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
+                <label asp-for="@Model.OrderItem.Quantity" class="control-label"></label>
+                <input asp-for="@Model.OrderItem.Quantity" class="form-control" />
+                <span asp-validation-for="@Model.OrderItem.Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Height" class="control-label"></label>
-                <input asp-for="Height" class="form-control" />
-                <span asp-validation-for="Height" class="text-danger"></span>
+                <label asp-for="@Model.OrderItem.Height" class="control-label"></label>
+                <input asp-for="@Model.OrderItem.Height" class="form-control" />
+                <span asp-validation-for="@Model.OrderItem.Height" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Width" class="control-label"></label>
-                <input asp-for="Width" class="form-control" />
-                <span asp-validation-for="Width" class="text-danger"></span>
+                <label asp-for="@Model.OrderItem.Width" class="control-label"></label>
+                <input asp-for="@Model.OrderItem.Width" class="form-control" />
+                <span asp-validation-for="@Model.OrderItem.Width" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <label asp-for="@Model.OrderItem.Price" class="control-label"></label>
+                <input asp-for="@Model.OrderItem.Price" class="form-control" />
+                <span asp-validation-for="@Model.OrderItem.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

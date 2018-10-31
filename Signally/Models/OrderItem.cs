@@ -16,7 +16,6 @@ namespace Signally.Models
         [Required]
         [Display(Name = "Type")]
         public int TypeId { get; set; }
-        [Required]
         public Type Type { get; set; }
         [Required]
         public int Quantity { get; set; }
