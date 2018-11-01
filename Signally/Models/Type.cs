@@ -15,6 +15,8 @@ namespace Signally.Models
         public string TypeName { get; set; }
         [Required]
         [Display(Name = "Unit Price")]
-        public double PricePerUnit { get; set; }
+        public decimal PricePerUnit { get; set; }
+        public virtual ICollection<OrderItem> OrderItem { get; set; }
+
     }
 }

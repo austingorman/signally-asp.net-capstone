@@ -9,6 +9,8 @@ namespace Signally.Models
     public class Order
     {
         [Required]
+        [Key]
+        [Display(Name = "Order")]
         public int OrderId  { get; set; }
         [Required]
         [Display(Name = "CSR")]
@@ -19,7 +21,7 @@ namespace Signally.Models
         public int CustomerId  { get; set; }
         public Customer Customer { get; set; }
         [Required]
-        [Display(Name = "DatePlaced")]
+        [Display(Name = "Date Placed")]
         public DateTime DatePlaced { get; set; }
         [Required]
         [Display(Name = "Date Due")]
@@ -32,8 +34,7 @@ namespace Signally.Models
         public bool Rush { get; set; }
         [Required]
         public bool Install { get; set; }
-        [Required]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public virtual ICollection<OrderItem> OrderItem { get; set; }
     }
 }

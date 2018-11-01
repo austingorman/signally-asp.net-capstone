@@ -10,8 +10,8 @@ using Signally.Data;
 namespace Signally.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181031144723_newmigration")]
-    partial class newmigration
+    [Migration("20181101191032_removedrequiredprice")]
+    partial class removedrequiredprice
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,7 +116,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "e075250e-d828-493e-b1ab-d9b78091cec3", AccessFailedCount = 0, ConcurrencyStamp = "b6abb6e8-c008-4efb-8322-5e1854f15889", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEMtPo9sZme7l7VeBfGZ1yTuh8Ups6mRPsof+0t2GKnHGq4eh5tUGHCAM4oBZa25pmQ==", PhoneNumberConfirmed = false, SecurityStamp = "dedd2e63-2d6b-4157-b1f4-1ca12467fd07", TwoFactorEnabled = false }
+                        new { Id = "be9d416a-b78a-4b96-bc2e-53db372c274a", AccessFailedCount = 0, ConcurrencyStamp = "73419d35-f268-4100-9178-edba27bb1bf6", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAELmB+2u7sY6YF+yKGmSptqMb5M6EXeDLsqgOLrrDHmX8UfUBzXDeEFmNar47Rnd8VA==", PhoneNumberConfirmed = false, SecurityStamp = "6a6af2b6-3c11-4c0d-a50d-4c5d80aef5fa", TwoFactorEnabled = false }
                     );
                 });
 
@@ -259,7 +259,7 @@ namespace Signally.Migrations
 
                     b.Property<bool>("Install");
 
-                    b.Property<double>("Price");
+                    b.Property<decimal>("Price");
 
                     b.Property<bool>("Rush");
 
@@ -282,18 +282,17 @@ namespace Signally.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Height");
+                    b.Property<decimal>("Height");
 
                     b.Property<int>("OrderId");
 
-                    b.Property<double>("Price");
+                    b.Property<decimal>("Price");
 
                     b.Property<int>("Quantity");
 
                     b.Property<int>("TypeId");
 
-                    b.Property<int?>("Width")
-                        .IsRequired();
+                    b.Property<decimal>("Width");
 
                     b.HasKey("OrderItemId");
 
@@ -331,7 +330,7 @@ namespace Signally.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("PricePerUnit");
+                    b.Property<decimal>("PricePerUnit");
 
                     b.Property<string>("TypeName")
                         .IsRequired();
@@ -341,10 +340,10 @@ namespace Signally.Migrations
                     b.ToTable("Type");
 
                     b.HasData(
-                        new { TypeId = 1, PricePerUnit = 2.0, TypeName = "Vinyl Letters" },
-                        new { TypeId = 2, PricePerUnit = 10.0, TypeName = "Coroplast" },
-                        new { TypeId = 3, PricePerUnit = 15.0, TypeName = "Aluminum" },
-                        new { TypeId = 4, PricePerUnit = 7.0, TypeName = "Banner" }
+                        new { TypeId = 1, PricePerUnit = 2m, TypeName = "Vinyl Letters" },
+                        new { TypeId = 2, PricePerUnit = 10m, TypeName = "Coroplast" },
+                        new { TypeId = 3, PricePerUnit = 15m, TypeName = "Aluminum" },
+                        new { TypeId = 4, PricePerUnit = 7m, TypeName = "Banner" }
                     );
                 });
 
