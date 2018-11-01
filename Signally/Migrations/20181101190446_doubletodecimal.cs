@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Signally.Migrations
 {
-    public partial class newmigration : Migration
+    public partial class doubletodecimal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -99,7 +99,7 @@ namespace Signally.Migrations
                     TypeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     TypeName = table.Column<string>(nullable: false),
-                    PricePerUnit = table.Column<double>(nullable: false)
+                    PricePerUnit = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -225,7 +225,7 @@ namespace Signally.Migrations
                     StatusId = table.Column<int>(nullable: false),
                     Rush = table.Column<bool>(nullable: false),
                     Install = table.Column<bool>(nullable: false),
-                    Price = table.Column<double>(nullable: false)
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -259,9 +259,9 @@ namespace Signally.Migrations
                     OrderId = table.Column<int>(nullable: false),
                     TypeId = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    Height = table.Column<int>(nullable: false),
-                    Width = table.Column<int>(nullable: false),
-                    Price = table.Column<double>(nullable: false)
+                    Height = table.Column<decimal>(nullable: false),
+                    Width = table.Column<decimal>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -283,7 +283,7 @@ namespace Signally.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e075250e-d828-493e-b1ab-d9b78091cec3", 0, "b6abb6e8-c008-4efb-8322-5e1854f15889", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEMtPo9sZme7l7VeBfGZ1yTuh8Ups6mRPsof+0t2GKnHGq4eh5tUGHCAM4oBZa25pmQ==", null, false, "dedd2e63-2d6b-4157-b1f4-1ca12467fd07", false, null });
+                values: new object[] { "9720010f-7830-4d0a-9527-03c2995f3ef8", 0, "3a151bc6-5554-463c-948a-373b82c877ee", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEMDzKVAq3BZa0xlqg47dbJ/GPRhdcUtquEyAJvT37jt57MsCz74fD3IEEsEbqXdiEA==", null, false, "22555f39-9a8f-4944-8d85-ab926de3299e", false, null });
 
             migrationBuilder.InsertData(
                 table: "CSR",
@@ -310,10 +310,10 @@ namespace Signally.Migrations
                 columns: new[] { "TypeId", "PricePerUnit", "TypeName" },
                 values: new object[,]
                 {
-                    { 1, 2.0, "Vinyl Letters" },
-                    { 2, 10.0, "Coroplast" },
-                    { 3, 15.0, "Aluminum" },
-                    { 4, 7.0, "Banner" }
+                    { 1, 2m, "Vinyl Letters" },
+                    { 2, 10m, "Coroplast" },
+                    { 3, 15m, "Aluminum" },
+                    { 4, 7m, "Banner" }
                 });
 
             migrationBuilder.CreateIndex(

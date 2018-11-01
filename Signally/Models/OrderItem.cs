@@ -20,10 +20,9 @@ namespace Signally.Models
         [Required]
         public int Quantity { get; set; }
         [Required]
-        public int Height { get; set; }
+        public decimal Height { get; set; }
         [Required]
-        public int? Width { get; set; }
-        [Required]
-        public double Price { get; set; }
+        public decimal Width { get; set; }
+        public decimal Price { get; set; }
     }
 }

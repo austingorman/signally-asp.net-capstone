@@ -34,8 +34,7 @@
                 <span asp-validation-for="@Model.OrderItem.Width" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.OrderItem.Price" class="control-label"></label>
-                <input asp-for="@Model.OrderItem.Price" class="form-control" />
+                <input type="hidden" asp-for="@Model.OrderItem.Price" class="form-control" />
                 <span asp-validation-for="@Model.OrderItem.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,7 +45,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Line Items</a>
 </div>
 
 @section Scripts {

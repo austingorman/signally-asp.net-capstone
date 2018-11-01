@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Signally.Data;
 
 namespace Signally.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181101190446_doubletodecimal")]
+    partial class doubletodecimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,7 +116,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "39309eab-264b-4907-95c7-063286a6175e", AccessFailedCount = 0, ConcurrencyStamp = "ff8355de-1c0e-4f13-92a2-5e192ce8fe2c", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEGLBcmBBEN2ffrdJGREJ2hPNbDT0hvcxI0Idi+6JFZtle7+GaaGB2uxFG3CqhZwBfw==", PhoneNumberConfirmed = false, SecurityStamp = "de172957-5ea4-40e8-9ca4-defaa2c866b9", TwoFactorEnabled = false }
+                        new { Id = "9720010f-7830-4d0a-9527-03c2995f3ef8", AccessFailedCount = 0, ConcurrencyStamp = "3a151bc6-5554-463c-948a-373b82c877ee", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEMDzKVAq3BZa0xlqg47dbJ/GPRhdcUtquEyAJvT37jt57MsCz74fD3IEEsEbqXdiEA==", PhoneNumberConfirmed = false, SecurityStamp = "22555f39-9a8f-4944-8d85-ab926de3299e", TwoFactorEnabled = false }
                     );
                 });
 
@@ -416,7 +418,7 @@ namespace Signally.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Signally.Models.Type", "Type")
-                        .WithMany("OrderItem")
+                        .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

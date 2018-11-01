@@ -23,7 +23,27 @@ namespace Signally.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Order.Include(o => o.CSR).Include(o => o.Customer).Include(o => o.Status);
+            var applicationDbContext = _context.Order
+                .Include(o => o.CSR)
+                .Include(o => o.Customer)
+                .Include(o => o.Status)
+                .Include(o => o.OrderItem);
+
+            var OrderList = await applicationDbContext.ToListAsync();
+
+            foreach (var order in OrderList)
+            {
+            decimal TotalPrice = 0;
+
+                foreach(var orderitem in order.OrderItem)
+                {
+          
+                TotalPrice = TotalPrice + orderitem.Price;
+                }
+                order.Price = TotalPrice;
+            }
+            //Taco.
+
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -64,7 +84,7 @@ namespace Signally.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install,Price")] Order order)
+        public async Task<IActionResult> Create([Bind("CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install")] Order order)
         {
             if (ModelState.IsValid)
             {

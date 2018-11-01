@@ -25,7 +25,8 @@ namespace Signally.Controllers
             if (TheOrderId == null)
             {
                 var applicationDbContext2 = _context.OrderItem.Include(o => o.Order).Include(o => o.Type);
-                return View(await applicationDbContext2.ToListAsync());
+
+                    return View(await applicationDbContext2.ToListAsync());
             }
             var applicationDbContext = _context.OrderItem.Include(o => o.Order).Include(o => o.Type).Where(o => (o.OrderId == TheOrderId));
             return View(await applicationDbContext.ToListAsync());
@@ -34,29 +35,12 @@ namespace Signally.Controllers
         // GET: OrderItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var orderItem = await _context.OrderItem
-            //    .Include(o => o.Order)
-            //    .Include(o => o.Type)
-            //    .FirstOrDefaultAsync(m => m.OrderItemId == id);
-            //if (orderItem == null)
-            //{
-            //    return NotFound();
-            //}
             return RedirectToAction(nameof(Index), new { TheOrderId = id });
         }
 
         // GET: OrderItems/Create
         public IActionResult Create()
         {
-            //ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId");
-            //ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName");
-            //return View();
-
             var ViewModel = new CreateOrderItemViewModel(_context);
             return View(ViewModel);
         }
@@ -68,6 +52,12 @@ namespace Signally.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("OrderItemId,OrderId,TypeId,Quantity,Height,Width,Price")] OrderItem orderItem)
         {
+            var OrderItemType = _context.Type.SingleOrDefault(t => t.TypeId == orderItem.TypeId);
+
+            var OrderItemPrice = (OrderItemType.PricePerUnit * (orderItem.Quantity * (orderItem.Height * orderItem.Width)));
+            orderItem.Price = OrderItemPrice;
+            ModelState.Remove("orderItem.Price");            
+
             int OrderId;
             var StringId = RouteData.Values["id"].ToString();
             var TheId = int.TryParse(StringId, out OrderId);
@@ -83,9 +73,6 @@ namespace Signally.Controllers
             CreateOrderItemViewModel createOrderItemViewModel = new CreateOrderItemViewModel(_context);
             createOrderItemViewModel.OrderItem = orderItem;
             return View(createOrderItemViewModel);
-            //ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderId", orderItem.OrderId);
-            //ViewData["TypeId"] = new SelectList(_context.Type, "TypeId", "TypeName", orderItem.TypeId);
-            //return View(orderItem);
         }
 
         // GET: OrderItems/Edit/5
