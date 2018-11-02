@@ -24,17 +24,28 @@ namespace Signally.Controllers
         {
             if (TheOrderId == null)
             {
-                var applicationDbContext2 = _context.OrderItem.Include(o => o.Order).Include(o => o.Type);
+                var applicationDbContext2 = _context.OrderItem
+                    .Include(o => o.Order)
+                    .Include(o => o.Type);
 
                     return View(await applicationDbContext2.ToListAsync());
             }
-            var applicationDbContext = _context.OrderItem.Include(o => o.Order).Include(o => o.Type).Where(o => (o.OrderId == TheOrderId));
+            var applicationDbContext = _context.OrderItem
+                .Include(o => o.Order)
+                .Include(o => o.Type)
+                .Where(o => (o.OrderId == TheOrderId));
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: OrderItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var OrderItemPrice = _context.OrderItem.FirstOrDefault(o => o.OrderId == id);
+
+            if(OrderItemPrice == null)
+            {
+                return RedirectToAction("Index", "Orders", new { area = "" });
+            }
             return RedirectToAction(nameof(Index), new { TheOrderId = id });
         }
 

@@ -8,7 +8,7 @@ namespace Signally.Models
 {
     public class Customer
     {
-        [Required]
+        [Key]
         public int CustomerId { get; set; }
         public string Company { get; set; }
         [Display(Name = "First Name")]

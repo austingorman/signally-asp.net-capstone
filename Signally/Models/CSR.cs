@@ -8,7 +8,7 @@ namespace Signally.Models
 {
     public class CSR
     {
-        [Required]
+        [Key]
         public int CSRId { get; set; }
         [Required]
         [Display(Name = "First Name")]

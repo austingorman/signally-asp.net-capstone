@@ -10,8 +10,8 @@ using Signally.Data;
 namespace Signally.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181101202320_addedorderitemtotype")]
-    partial class addedorderitemtotype
+    [Migration("20181102161618_details")]
+    partial class details
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,7 +116,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "39309eab-264b-4907-95c7-063286a6175e", AccessFailedCount = 0, ConcurrencyStamp = "ff8355de-1c0e-4f13-92a2-5e192ce8fe2c", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEGLBcmBBEN2ffrdJGREJ2hPNbDT0hvcxI0Idi+6JFZtle7+GaaGB2uxFG3CqhZwBfw==", PhoneNumberConfirmed = false, SecurityStamp = "de172957-5ea4-40e8-9ca4-defaa2c866b9", TwoFactorEnabled = false }
+                        new { Id = "089d1d18-bb67-4b5c-8ed1-6399cedf8413", AccessFailedCount = 0, ConcurrencyStamp = "6b6fa8c4-e288-44b8-bd8e-87f5d5b279e1", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEADZmKIU72SOdaQkA03h9i/o+ADowTxksh6iyedEeARfs9eZf2lDLEteap+ii6SJrg==", PhoneNumberConfirmed = false, SecurityStamp = "08a0162a-b700-47f5-a6c1-c4828ac8eb44", TwoFactorEnabled = false }
                     );
                 });
 

@@ -8,7 +8,7 @@ namespace Signally.Models
 {
     public class OrderItem
     {
-        [Required]
+        [Key]
         public int OrderItemId { get; set; }
         [Required]
         public int OrderId { get; set; }

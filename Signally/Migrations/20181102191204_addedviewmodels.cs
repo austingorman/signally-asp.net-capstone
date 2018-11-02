@@ -2,19 +2,19 @@
 
 namespace Signally.Migrations
 {
-    public partial class addedorderitemtotype : Migration
+    public partial class addedviewmodels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumns: new[] { "Id", "ConcurrencyStamp" },
-                keyValues: new object[] { "be9d416a-b78a-4b96-bc2e-53db372c274a", "73419d35-f268-4100-9178-edba27bb1bf6" });
+                keyValues: new object[] { "c6b0cb94-ae26-4b77-9091-46b45e3699f4", "f16b2663-fc85-460d-abc8-d666e8622ae5" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "39309eab-264b-4907-95c7-063286a6175e", 0, "ff8355de-1c0e-4f13-92a2-5e192ce8fe2c", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEGLBcmBBEN2ffrdJGREJ2hPNbDT0hvcxI0Idi+6JFZtle7+GaaGB2uxFG3CqhZwBfw==", null, false, "de172957-5ea4-40e8-9ca4-defaa2c866b9", false, null });
+                values: new object[] { "e7216593-b757-4bed-8fd3-923f5bdc16dd", 0, "915dca33-e082-4f82-ac9d-c81e006c9518", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEJfXWnNSaV5nVgT3ONGBC7HHpfWstWlSulKNSYTRoiibndkCJQT/IYvw6Gqe4W7Hww==", null, false, "53b6158a-2a91-4af7-8a42-60a404742e89", false, null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -22,12 +22,12 @@ namespace Signally.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumns: new[] { "Id", "ConcurrencyStamp" },
-                keyValues: new object[] { "39309eab-264b-4907-95c7-063286a6175e", "ff8355de-1c0e-4f13-92a2-5e192ce8fe2c" });
+                keyValues: new object[] { "e7216593-b757-4bed-8fd3-923f5bdc16dd", "915dca33-e082-4f82-ac9d-c81e006c9518" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "be9d416a-b78a-4b96-bc2e-53db372c274a", 0, "73419d35-f268-4100-9178-edba27bb1bf6", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAELmB+2u7sY6YF+yKGmSptqMb5M6EXeDLsqgOLrrDHmX8UfUBzXDeEFmNar47Rnd8VA==", null, false, "6a6af2b6-3c11-4c0d-a50d-4c5d80aef5fa", false, null });
+                values: new object[] { "c6b0cb94-ae26-4b77-9091-46b45e3699f4", 0, "f16b2663-fc85-460d-abc8-d666e8622ae5", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEAEzgFI0r2yQLjWaFvG293DRFXEk2V42aVbY+GY1eQJFSVQhR6bbD/H4Nmkc8EP/ag==", null, false, "0c7b7ab2-48ed-4761-92a4-4fd2a66ef505", false, null });
         }
     }
 }

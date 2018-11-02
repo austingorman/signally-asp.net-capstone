@@ -10,8 +10,8 @@ using Signally.Data;
 namespace Signally.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181101191032_removedrequiredprice")]
-    partial class removedrequiredprice
+    [Migration("20181102165425_addedkeys")]
+    partial class addedkeys
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,7 +116,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "be9d416a-b78a-4b96-bc2e-53db372c274a", AccessFailedCount = 0, ConcurrencyStamp = "73419d35-f268-4100-9178-edba27bb1bf6", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAELmB+2u7sY6YF+yKGmSptqMb5M6EXeDLsqgOLrrDHmX8UfUBzXDeEFmNar47Rnd8VA==", PhoneNumberConfirmed = false, SecurityStamp = "6a6af2b6-3c11-4c0d-a50d-4c5d80aef5fa", TwoFactorEnabled = false }
+                        new { Id = "c6b0cb94-ae26-4b77-9091-46b45e3699f4", AccessFailedCount = 0, ConcurrencyStamp = "f16b2663-fc85-460d-abc8-d666e8622ae5", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEAEzgFI0r2yQLjWaFvG293DRFXEk2V42aVbY+GY1eQJFSVQhR6bbD/H4Nmkc8EP/ag==", PhoneNumberConfirmed = false, SecurityStamp = "0c7b7ab2-48ed-4761-92a4-4fd2a66ef505", TwoFactorEnabled = false }
                     );
                 });
 
@@ -418,7 +418,7 @@ namespace Signally.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Signally.Models.Type", "Type")
-                        .WithMany()
+                        .WithMany("OrderItem")
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
