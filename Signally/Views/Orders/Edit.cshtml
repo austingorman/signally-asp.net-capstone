@@ -11,50 +11,49 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Order.OrderId" />
+            <input type="hidden" asp-for="@Model.Order.OrderId" />
             <div class="form-group">
-                <label asp-for="Order.CSRId" class="control-label"></label>
-                <select asp-for="Order.CSRId" class="form-control" asp-items="@Model.CSR"></select>
-                <span asp-validation-for="Order.CSRId" class="text-danger"></span>
+                <label asp-for="@Model.Order.CSRId" class="control-label"></label>
+                <select asp-for="@Model.Order.CSRId" class="form-control" asp-items="@Model.CSR"></select>
+                <span asp-validation-for="@Model.Order.CSRId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Order.CustomerId" class="control-label"></label>
-                <select asp-for="Order.CustomerId" class="form-control" asp-items="@Model.Customer"></select>
-                <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
+                <label asp-for="@Model.Order.CustomerId" class="control-label"></label>
+                <select asp-for="@Model.Order.CustomerId" class="form-control" asp-items="@Model.Customer"></select>
+                <span asp-validation-for="@Model.Order.CustomerId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Order.DatePlaced" class="control-label"></label>
-                <input asp-for="Order.DatePlaced" class="form-control" />
-                <span asp-validation-for="Order.DatePlaced" class="text-danger"></span>
+                <label asp-for="@Model.Order.DatePlaced" class="control-label"></label>
+                <input asp-for="@Model.Order.DatePlaced" class="form-control" />
+                <span asp-validation-for="@Model.Order.DatePlaced" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Order.DateDue" class="control-label"></label>
-                <input asp-for="Order.DateDue" class="form-control" />
-                <span asp-validation-for="Order.DateDue" class="text-danger"></span>
+                <label asp-for="@Model.Order.DateDue" class="control-label"></label>
+                <input asp-for="@Model.Order.DateDue" class="form-control" />
+                <span asp-validation-for="@Model.Order.DateDue" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Order.StatusId" class="control-label"></label>
-                <select asp-for="Order.StatusId" class="form-control" asp-items="@Model.Status"></select>
-                <span asp-validation-for="Order.StatusId" class="text-danger"></span>
+                <label asp-for="@Model.Order.StatusId" class="control-label"></label>
+                <select asp-for="@Model.Order.StatusId" class="form-control" asp-items="@Model.Status"></select>
+                <span asp-validation-for="@Model.Order.StatusId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Order.Rush" /> @Html.DisplayNameFor(model => model.Order.Rush)
+                        <input asp-for="@Model.Order.Rush" /> @Html.DisplayNameFor(model => model.Order.Rush)
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Order.Install" /> @Html.DisplayNameFor(model => model.Order.Install)
+                        <input asp-for="@Model.Order.Install" /> @Html.DisplayNameFor(model => model.Order.Install)
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Order.Price" class="control-label"></label>
-                <input asp-for="Order.Price" class="form-control" />
-                <span asp-validation-for="Order.Price" class="text-danger"></span>
+                <input type="hidden" asp-for="@Model.Order.Price" class="form-control" />
+                <span asp-validation-for="@Model.Order.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

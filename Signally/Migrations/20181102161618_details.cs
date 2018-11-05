@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Signally.Migrations
 {
-    public partial class doubletodecimal : Migration
+    public partial class details : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -283,7 +283,7 @@ namespace Signally.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "9720010f-7830-4d0a-9527-03c2995f3ef8", 0, "3a151bc6-5554-463c-948a-373b82c877ee", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEMDzKVAq3BZa0xlqg47dbJ/GPRhdcUtquEyAJvT37jt57MsCz74fD3IEEsEbqXdiEA==", null, false, "22555f39-9a8f-4944-8d85-ab926de3299e", false, null });
+                values: new object[] { "089d1d18-bb67-4b5c-8ed1-6399cedf8413", 0, "6b6fa8c4-e288-44b8-bd8e-87f5d5b279e1", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEADZmKIU72SOdaQkA03h9i/o+ADowTxksh6iyedEeARfs9eZf2lDLEteap+ii6SJrg==", null, false, "08a0162a-b700-47f5-a6c1-c4828ac8eb44", false, null });
 
             migrationBuilder.InsertData(
                 table: "CSR",

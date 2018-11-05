@@ -8,7 +8,7 @@ namespace Signally.Models
 {
     public class Type
     {
-        [Required]
+        [Key]
         public int TypeId { get; set; }
         [Required]
         [Display(Name = "Type")]

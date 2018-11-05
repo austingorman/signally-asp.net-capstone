@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Line Items For Order @Model.First().OrderId</h2>
+<h2>Line Items For Order @Model.FirstOrDefault().OrderId</h2>
 
 <p>
-    <a asp-action="Create" asp-route-id="@Model.First().OrderId" asp-controller="OrderItems">Add Line Item</a>
+    <a asp-action="Create" asp-route-id="@Model.FirstOrDefault().OrderId" asp-controller="OrderItems">Add Line Item</a>
 </p>
 <table class="table">
     <thead>

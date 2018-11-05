@@ -22,7 +22,12 @@ namespace Signally.Controllers
         // GET: Production
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Order.Include(o => o.CSR).Include(o => o.Customer).Include(o => o.Status).Where(o => o.Status.StatusName == "Order") ;
+            var applicationDbContext = _context.Order
+                .Include(o => o.CSR)
+                .Include(o => o.Customer)
+                .Include(o => o.Status)
+                .Include(o => o.OrderItem)
+                .Where(o => o.Status.StatusName == "Order") ;
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,17 +39,18 @@ namespace Signally.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
-                .Include(o => o.CSR)
-                .Include(o => o.Customer)
-                .Include(o => o.Status)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
+            var order = _context.OrderItem.Select(o => o)
+                .Include(o => o.Order)
+                .Include(o => o.Type)
+                .Where(m => m.OrderId == id);
             if (order == null)
             {
                 return NotFound();
             }
-
-            return View(order);
+            DetailsProductionViewModel detailsProductionViewModel = new DetailsProductionViewModel();
+            detailsProductionViewModel.OrderItemCollection = order.ToList();
+            detailsProductionViewModel.OrderId = id;
+            return View(detailsProductionViewModel);
         }
 
         // GET: Production/Edit/5
@@ -60,10 +66,9 @@ namespace Signally.Controllers
             {
                 return NotFound();
             }
-            ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
-            return View(order);
+            EditProductionViewModel editProductionViewModel = new EditProductionViewModel(_context);
+            editProductionViewModel.Order = order;
+            return View(editProductionViewModel);
         }
 
         // POST: Production/Edit/5
@@ -71,7 +76,7 @@ namespace Signally.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install,Price")] Order order)
+        public async Task<IActionResult> Edit(int id, Order order)
         {
             if (id != order.OrderId)
             {
@@ -98,10 +103,9 @@ namespace Signally.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
-            return View(order);
+            EditProductionViewModel editProductionViewModel = new EditProductionViewModel(_context);
+            editProductionViewModel.Order = order;
+            return View(editProductionViewModel);
         }
     }
 }

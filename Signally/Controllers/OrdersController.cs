@@ -37,12 +37,10 @@ namespace Signally.Controllers
 
                 foreach(var orderitem in order.OrderItem)
                 {
-          
-                TotalPrice = TotalPrice + orderitem.Price;
+                    TotalPrice = TotalPrice + orderitem.Price;
                 }
                 order.Price = TotalPrice;
             }
-            //Taco.
 
             return View(await applicationDbContext.ToListAsync());
         }
@@ -71,9 +69,6 @@ namespace Signally.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            //ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName");
-            //ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "FullName");
-            //ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName");
             var ViewModel = new CreateOrderViewModel(_context);
             return View(ViewModel);
         }
