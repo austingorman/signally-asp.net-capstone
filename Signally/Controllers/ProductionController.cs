@@ -41,6 +41,7 @@ namespace Signally.Controllers
 
             var order = _context.OrderItem.Select(o => o)
                 .Include(o => o.Order)
+                .Include(o => o.Type)
                 .Where(m => m.OrderId == id);
             if (order == null)
             {
