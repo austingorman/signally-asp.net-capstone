@@ -114,7 +114,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "e7216593-b757-4bed-8fd3-923f5bdc16dd", AccessFailedCount = 0, ConcurrencyStamp = "915dca33-e082-4f82-ac9d-c81e006c9518", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEJfXWnNSaV5nVgT3ONGBC7HHpfWstWlSulKNSYTRoiibndkCJQT/IYvw6Gqe4W7Hww==", PhoneNumberConfirmed = false, SecurityStamp = "53b6158a-2a91-4af7-8a42-60a404742e89", TwoFactorEnabled = false }
+                        new { Id = "9eb02846-bca3-4b1f-8447-e6cfefbccb79", AccessFailedCount = 0, ConcurrencyStamp = "9a079eb2-5c5e-419b-bbe1-8db6159357fd", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEO4Hyr2+El3VEwJozl0/qo6PO+BvfJC6nsG6q/FYOxTDnVHIHGOej2blekR9oKnS2w==", PhoneNumberConfirmed = false, SecurityStamp = "30547251-7977-45e4-b025-4b2ed544d8c0", TwoFactorEnabled = false }
                     );
                 });
 
