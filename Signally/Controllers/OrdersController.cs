@@ -21,17 +21,18 @@ namespace Signally.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string searchString, string searchStringCustomer)
         {
-            var applicationDbContext = _context.Order
+            var orders = _context.Order
                 .Include(o => o.CSR)
                 .Include(o => o.Customer)
                 .Include(o => o.Status)
-                .Include(o => o.OrderItem);
+                .Include(o => o.OrderItem)
+                .Select(o => o);
 
-            var OrderList = await applicationDbContext.ToListAsync();
+            //var OrderList = await orders.ToListAsync();
 
-            foreach (var order in OrderList)
+            foreach (var order in orders)
             {
             decimal TotalPrice = 0;
 
@@ -42,7 +43,16 @@ namespace Signally.Controllers
                 order.Price = TotalPrice;
             }
 
-            return View(await applicationDbContext.ToListAsync());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                orders = orders.Where(o => o.OrderId.ToString() == searchString);
+            }
+            if (!String.IsNullOrEmpty(searchStringCustomer))
+            {
+                orders = orders.Where(o => o.Customer.FullName.ToLower().Contains(searchStringCustomer.ToLower()));
+            }
+
+            return View(orders);
         }
 
         // GET: Orders/Details/5
