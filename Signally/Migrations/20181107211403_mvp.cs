@@ -283,7 +283,7 @@ namespace Signally.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "9eb02846-bca3-4b1f-8447-e6cfefbccb79", 0, "9a079eb2-5c5e-419b-bbe1-8db6159357fd", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEO4Hyr2+El3VEwJozl0/qo6PO+BvfJC6nsG6q/FYOxTDnVHIHGOej2blekR9oKnS2w==", null, false, "30547251-7977-45e4-b025-4b2ed544d8c0", false, null });
+                values: new object[] { "dd7b0411-cfb7-420c-882e-5f78ed6f836d", 0, "469558eb-843e-4d30-b35b-5cad7af86dc9", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEJ+87s3rrppyIf3ckJkm/PjWPCoK8TJpItYITvTB++VoR7cm5o9+YSWz1ONwDWavCA==", null, false, "00dc6ecb-fff1-450e-91f5-4356cf7a4b61", false, null });
 
             migrationBuilder.InsertData(
                 table: "CSR",
@@ -310,10 +310,10 @@ namespace Signally.Migrations
                 columns: new[] { "TypeId", "PricePerUnit", "TypeName" },
                 values: new object[,]
                 {
-                    { 1, 2m, "Vinyl Letters" },
-                    { 2, 10m, "Coroplast" },
-                    { 3, 15m, "Aluminum" },
-                    { 4, 7m, "Banner" }
+                    { 1, 3m, "Vinyl Letters" },
+                    { 2, 0.1m, "Coroplast" },
+                    { 3, 0.2m, "Aluminum" },
+                    { 4, 0.15m, "Banner" }
                 });
 
             migrationBuilder.CreateIndex(

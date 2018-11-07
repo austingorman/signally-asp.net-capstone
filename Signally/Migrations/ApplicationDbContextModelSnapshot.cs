@@ -114,7 +114,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "9eb02846-bca3-4b1f-8447-e6cfefbccb79", AccessFailedCount = 0, ConcurrencyStamp = "9a079eb2-5c5e-419b-bbe1-8db6159357fd", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEO4Hyr2+El3VEwJozl0/qo6PO+BvfJC6nsG6q/FYOxTDnVHIHGOej2blekR9oKnS2w==", PhoneNumberConfirmed = false, SecurityStamp = "30547251-7977-45e4-b025-4b2ed544d8c0", TwoFactorEnabled = false }
+                        new { Id = "dd7b0411-cfb7-420c-882e-5f78ed6f836d", AccessFailedCount = 0, ConcurrencyStamp = "469558eb-843e-4d30-b35b-5cad7af86dc9", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEJ+87s3rrppyIf3ckJkm/PjWPCoK8TJpItYITvTB++VoR7cm5o9+YSWz1ONwDWavCA==", PhoneNumberConfirmed = false, SecurityStamp = "00dc6ecb-fff1-450e-91f5-4356cf7a4b61", TwoFactorEnabled = false }
                     );
                 });
 
@@ -338,10 +338,10 @@ namespace Signally.Migrations
                     b.ToTable("Type");
 
                     b.HasData(
-                        new { TypeId = 1, PricePerUnit = 2m, TypeName = "Vinyl Letters" },
-                        new { TypeId = 2, PricePerUnit = 10m, TypeName = "Coroplast" },
-                        new { TypeId = 3, PricePerUnit = 15m, TypeName = "Aluminum" },
-                        new { TypeId = 4, PricePerUnit = 7m, TypeName = "Banner" }
+                        new { TypeId = 1, PricePerUnit = 3m, TypeName = "Vinyl Letters" },
+                        new { TypeId = 2, PricePerUnit = 0.1m, TypeName = "Coroplast" },
+                        new { TypeId = 3, PricePerUnit = 0.2m, TypeName = "Aluminum" },
+                        new { TypeId = 4, PricePerUnit = 0.15m, TypeName = "Banner" }
                     );
                 });
 
