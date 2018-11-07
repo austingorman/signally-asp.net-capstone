@@ -3,6 +3,19 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: linear-gradient(to bottom, #f0d97f, #e8c877, #deb86f, #d3a868, #c89962);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    color: darkslategray;
+}
+a {
+    color: white !important;
+}
+
+hr {
+    color: white;   
 }
 
 /* Wrapping element */
@@ -34,4 +47,19 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+
+/*.row {
+    color: white;
+}*/
+
+.navbar-custom {
+    background-color: darkslategray !important;
+}
+.navbar-link {
+    color: whitesmoke !important;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #528a8a;
 }

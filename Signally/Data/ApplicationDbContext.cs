@@ -96,25 +96,25 @@ namespace Signally.Data
                {
                    TypeId = 1,
                    TypeName = "Vinyl Letters",
-                   PricePerUnit = (decimal)2.00
+                   PricePerUnit = (decimal)3.00
                },
                new Models.Type()
                {
                    TypeId = 2,
                    TypeName = "Coroplast",
-                   PricePerUnit = (decimal)10.00
+                   PricePerUnit = (decimal)0.10
                },
                new Models.Type()
                {
                    TypeId = 3,
                    TypeName = "Aluminum",
-                   PricePerUnit = (decimal)15.00
+                   PricePerUnit = (decimal)0.20
                },
                new Models.Type()
                {
                    TypeId = 4,
                    TypeName = "Banner",
-                   PricePerUnit = (decimal)7.00
+                   PricePerUnit = (decimal)0.15
                }
            );
         }

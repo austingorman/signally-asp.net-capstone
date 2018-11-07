@@ -22,13 +22,13 @@ namespace Signally.Controllers
         // GET: Production
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Order
+            var orders = _context.Order
                 .Include(o => o.CSR)
                 .Include(o => o.Customer)
                 .Include(o => o.Status)
                 .Include(o => o.OrderItem)
-                .Where(o => o.Status.StatusName == "Order") ;
-            return View(await applicationDbContext.ToListAsync());
+                .Where(o => o.Status.StatusName == "Order");
+            return View(await orders.ToListAsync());
         }
 
         // GET: Production/Details/5
