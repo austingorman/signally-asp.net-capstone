@@ -36,6 +36,13 @@ namespace Signally.Controllers
             {
             decimal TotalPrice = 0;
 
+                    if (order.Rush == true)
+                    {
+                        TotalPrice = TotalPrice + 30;
+                    }
+                    if (order.Install == true){
+                        TotalPrice = TotalPrice + 80;
+                    }
                 foreach(var orderitem in order.OrderItem)
                 {
                     TotalPrice = TotalPrice + orderitem.Price;
