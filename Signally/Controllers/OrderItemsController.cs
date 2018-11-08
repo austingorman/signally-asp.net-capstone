@@ -110,7 +110,7 @@ namespace Signally.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderItemId,OrderId,TypeId,Quantity,Height,Width,Price")] OrderItem orderItem)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderItemId,OrderId,TypeId,Quantity,Height,Width,Price,Content")] OrderItem orderItem)
         {
             if (id != orderItem.OrderItemId)
             {
