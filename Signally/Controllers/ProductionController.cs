@@ -82,6 +82,44 @@ namespace Signally.Controllers
             {
                 return NotFound();
             }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(order);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!OrderExists(order.OrderId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            EditProductionViewModel editProductionViewModel = new EditProductionViewModel(_context);
+            editProductionViewModel.Order = order;
+            return View(editProductionViewModel);
+        }
+        // POST: Production/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public async Task<IActionResult> MarkAsBuilt(int id)
+        {
+
+            var order = _context.Order.Where(o => o.OrderId == id).FirstOrDefault();
+
+            if (id != order.OrderId)
+            {
+                return NotFound();
+            }
+
+            order.StatusId = 3;
 
             if (ModelState.IsValid)
             {
@@ -92,14 +130,14 @@ namespace Signally.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    //if (!OrderExists(order.OrderId))
-                    //{
-                    //    return NotFound();
-                    //}
-                    //else
-                    //{
-                    //    throw;
-                    //}
+                    if (!OrderExists(order.OrderId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -107,5 +145,9 @@ namespace Signally.Controllers
             editProductionViewModel.Order = order;
             return View(editProductionViewModel);
         }
+            private bool OrderExists(int id)
+            {
+                return _context.Order.Any(e => e.OrderId == id);
+            }
     }
 }
