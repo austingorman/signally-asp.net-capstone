@@ -24,5 +24,6 @@ namespace Signally.Models
         [Required]
         public decimal Width { get; set; }
         public decimal Price { get; set; }
+        public string Content { get; set; }
     }
 }

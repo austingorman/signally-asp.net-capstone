@@ -41,6 +41,11 @@
                 <span asp-validation-for="@Model.OrderItem.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="@Model.OrderItem.Content" class="control-label"></label>
+                <input asp-for="@Model.OrderItem.Content" class="form-control" />
+                <span asp-validation-for="@Model.OrderItem.Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
