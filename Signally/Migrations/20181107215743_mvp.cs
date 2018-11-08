@@ -283,7 +283,7 @@ namespace Signally.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dd7b0411-cfb7-420c-882e-5f78ed6f836d", 0, "469558eb-843e-4d30-b35b-5cad7af86dc9", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEJ+87s3rrppyIf3ckJkm/PjWPCoK8TJpItYITvTB++VoR7cm5o9+YSWz1ONwDWavCA==", null, false, "00dc6ecb-fff1-450e-91f5-4356cf7a4b61", false, null });
+                values: new object[] { "322060ea-ba57-4c9e-b09e-dec7ccb3a991", 0, "b585ad47-2e34-45d1-bff8-0e4bfb5c9489", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEFSgULEDJFx2XDF17r6vUSQ5rzstQoGq5/bfQGP/LdTvoNiZEtOqs/LRYw80dpb8Lg==", null, false, "ae9d42cc-10ac-4601-a7a9-cadc94b80bb7", false, null });
 
             migrationBuilder.InsertData(
                 table: "CSR",
