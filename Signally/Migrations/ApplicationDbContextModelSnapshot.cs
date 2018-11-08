@@ -114,7 +114,7 @@ namespace Signally.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "322060ea-ba57-4c9e-b09e-dec7ccb3a991", AccessFailedCount = 0, ConcurrencyStamp = "b585ad47-2e34-45d1-bff8-0e4bfb5c9489", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEFSgULEDJFx2XDF17r6vUSQ5rzstQoGq5/bfQGP/LdTvoNiZEtOqs/LRYw80dpb8Lg==", PhoneNumberConfirmed = false, SecurityStamp = "ae9d42cc-10ac-4601-a7a9-cadc94b80bb7", TwoFactorEnabled = false }
+                        new { Id = "d71542c8-9815-41ed-a05e-166556adbbd0", AccessFailedCount = 0, ConcurrencyStamp = "fa9adcf0-5bc1-44b2-81ad-3f12a757541e", Email = "110@signs.com", EmailConfirmed = false, LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAELqmS030F+jJCNxXEEwg4wwYz9fAdT6SNWBCAG+xofUtcpz+qzkNpAfshbamTxNPqQ==", PhoneNumberConfirmed = false, SecurityStamp = "4fbe91dc-abea-4e12-8329-cca83d2795cb", TwoFactorEnabled = false }
                     );
                 });
 
@@ -279,6 +279,8 @@ namespace Signally.Migrations
                     b.Property<int>("OrderItemId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content");
 
                     b.Property<decimal>("Height");
 

@@ -61,9 +61,10 @@ namespace Signally.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderItemId,OrderId,TypeId,Quantity,Height,Width,Price")] OrderItem orderItem)
+        public async Task<IActionResult> Create([Bind("OrderItemId,OrderId,TypeId,Quantity,Height,Width,Price,Content")] OrderItem orderItem)
         {
             var OrderItemType = _context.Type.SingleOrDefault(t => t.TypeId == orderItem.TypeId);
+
 
             var OrderItemPrice = (OrderItemType.PricePerUnit * (orderItem.Quantity * (orderItem.Height * orderItem.Width)));
             orderItem.Price = OrderItemPrice;

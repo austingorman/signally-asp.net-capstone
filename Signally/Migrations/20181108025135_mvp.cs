@@ -261,7 +261,8 @@ namespace Signally.Migrations
                     Quantity = table.Column<int>(nullable: false),
                     Height = table.Column<decimal>(nullable: false),
                     Width = table.Column<decimal>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false)
+                    Price = table.Column<decimal>(nullable: false),
+                    Content = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -283,7 +284,7 @@ namespace Signally.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "322060ea-ba57-4c9e-b09e-dec7ccb3a991", 0, "b585ad47-2e34-45d1-bff8-0e4bfb5c9489", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEFSgULEDJFx2XDF17r6vUSQ5rzstQoGq5/bfQGP/LdTvoNiZEtOqs/LRYw80dpb8Lg==", null, false, "ae9d42cc-10ac-4601-a7a9-cadc94b80bb7", false, null });
+                values: new object[] { "d71542c8-9815-41ed-a05e-166556adbbd0", 0, "fa9adcf0-5bc1-44b2-81ad-3f12a757541e", "110@signs.com", false, false, null, null, null, "AQAAAAEAACcQAAAAELqmS030F+jJCNxXEEwg4wwYz9fAdT6SNWBCAG+xofUtcpz+qzkNpAfshbamTxNPqQ==", null, false, "4fbe91dc-abea-4e12-8329-cca83d2795cb", false, null });
 
             migrationBuilder.InsertData(
                 table: "CSR",

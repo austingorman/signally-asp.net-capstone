@@ -101,10 +101,6 @@ namespace Signally.Controllers
             CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel(_context);
             createOrderViewModel.Order = order;
             return View(createOrderViewModel);
-            //ViewData["CSRId"] = new SelectList(_context.CSR, "CSRId", "FirstName", order.CSRId);
-            //ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", order.CustomerId);
-            //ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", order.StatusId);
-            //return View(order);
         }
 
         // GET: Orders/Edit/5
@@ -131,7 +127,7 @@ namespace Signally.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install,Price")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CSRId,CustomerId,DatePlaced,DateDue,StatusId,Rush,Install,Price,Content")] Order order)
             {
                 if (id != order.OrderId)
                 {
