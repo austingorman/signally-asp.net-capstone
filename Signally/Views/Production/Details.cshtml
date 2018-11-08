@@ -22,6 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.OrderItemCollection[0].Width)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItemCollection[0].Content)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,20 +32,23 @@
 
         @foreach (var orderItem in Model.OrderItemCollection)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => orderItem.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => orderItem.Type.TypeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => orderItem.Height) inches
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => orderItem.Width) inches
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => orderItem.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => orderItem.Type.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => orderItem.Height) inches
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => orderItem.Width) inches
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => orderItem.Content)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
